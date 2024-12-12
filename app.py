@@ -36,7 +36,7 @@ KNOWLEDGE_VECTOR_DATABASE = FAISS(
     embedding_function=embedding_model)
 
 # Model initialization
-READER_MODEL_NAME = "RJ1200/llama-3_3b-fine_tuned"
+READER_MODEL_NAME = "meta-llama/Llama-3.2-3B-Instruct"
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_use_double_quant=True,
@@ -76,11 +76,13 @@ prompt_in_chat_format = [
         "content": """PDF Context:
         {context}
         ---
-        For the following sections, generate the required number of questions:
+        For the following sections, generate new C programming questions based on the context the required number of questions. Provide a header also:
         section_requirements
-    part A-10,
-    part B- 5,
-    part C- 4
+    total marks:100
+    part A-10 questions ,
+    part B- 5 questions,
+    part C- 4 questions,
+    1 compulsory question
 
         ---
         Question: {question}""",
